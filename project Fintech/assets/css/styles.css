@@ -1,0 +1,77 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #524f4f;
+    margin: 0; /* Remover margens padrão do body */
+    display: flex; /* Utilizar flexbox para centralizar verticalmente */
+    align-items: center; /* Centralizar verticalmente */
+    justify-content: center; /* Centralizar horizontalmente */
+    height: 100vh; /* Definir altura total da tela */
+}
+
+.container {
+    width: 400px;
+    padding: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #2f2f31; /* Definir cor de fundo do container */
+}
+
+div {
+    width: 100%;
+}
+
+div h1 {
+    text-align: center;
+    color: #000000;
+    font-size: 40px;
+}
+
+div input {
+    background-color: #807a7a;
+}
+
+form div {
+    display: grid;
+    gap: 10px;
+}
+
+label {
+    font-weight: bold;
+    color: #a59717;
+}
+
+input[type="login"],
+input[type="password"] {
+    width: 100%;
+    padding: 5px;
+    border: 2px solid #000000;
+    color: #000000;
+}
+
+input[type="entrar"] {
+    width: 100%;
+    padding: 9px;
+    background-color: #ead51d;
+    border: none;
+    border-radius: 4px;
+}
+
+input[type="entrar"]:hover {
+    background-color: #000000;
+}
+
+input[type="submit"],
+input[type="entrar"] {
+    width: 100%;
+    padding: 6px;
+    margin-top: 10px;
+    background-color: #ead51d;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+input[type="submit"]:hover,
+input[type="entrar"]:hover {
+    background-color: #ffffff;
+}
