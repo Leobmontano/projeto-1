@@ -129,7 +129,9 @@ function updatePortrait() {
     portraitCtx.restore();
 }
 
-function resetGame() {
+function resetGame(options = {}) {
+    const { clearLog = false, skipIntro = false } = options;
+
     player.x = 80;
     player.y = 420;
     player.vx = 0;
@@ -144,8 +146,15 @@ function resetGame() {
     enemy.alive = true;
     player.score = 0;
     hudScore.textContent = '0';
-    storyLog.innerHTML = '';
-    logStory(`${player.name} desperta com o chamado do Sino Rachado.`);
+
+    if (clearLog) {
+        storyLog.innerHTML = '';
+    }
+
+    if (!skipIntro && player.name !== '—') {
+        logStory(`${player.name} desperta com o chamado do Sino Rachado.`);
+    }
+
     running = false;
     startOverlay.style.display = 'flex';
 }
@@ -158,8 +167,8 @@ creatorForm.addEventListener('submit', (event) => {
     updatePortrait();
     hudName.textContent = player.name;
     hudCalling.textContent = player.calling;
+    resetGame({ clearLog: true });
     logStory(`${player.name}, ${player.calling}, carrega um brilho ${player.color}.`);
-    resetGame();
 });
 
 function drawBackground() {
@@ -362,5 +371,5 @@ window.addEventListener('keydown', (event) => {
 window.addEventListener('keyup', (event) => keys.delete(event.code));
 
 updatePortrait();
-resetGame();
+resetGame({ clearLog: true, skipIntro: true });
 requestAnimationFrame(loop);
