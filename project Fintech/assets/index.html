@@ -3,126 +3,122 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ateliê Narrativo de Péria</title>
+    <title>Crônicas de Péria - Protótipo</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Spectral:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-    <header class="app-header">
-        <div class="branding">
-            <h1>Ateliê Narrativo de Péria</h1>
-            <p>Organize o mundo da sua história, das inspirações às cenas finais.</p>
+    <header class="hero">
+        <div class="hero__text">
+            <p class="eyebrow">Protótipo jogável · Universo 2D</p>
+            <h1>Crônicas de Péria</h1>
+            <p>
+                Um mundo despedaçado pelos sussurros do Vazio. Você joga como um artesão de ecos que molda memórias em lâminas.
+                Este protótipo reúne criação de personagem, narrativa interativa e uma arena de testes com movimento fluido inspirado em Hollow Knight.
+            </p>
+            <div class="hero__actions">
+                <a class="primary" href="#creator">Criar personagem</a>
+                <a class="secondary" href="#game">Ir para o campo de provas</a>
+            </div>
         </div>
-        <div class="header-actions">
-            <button type="button" class="ghost" id="exportData" aria-label="Exportar backup dos dados">Exportar backup</button>
-            <button type="button" class="ghost danger" id="clearData" aria-label="Excluir todos os dados">Limpar tudo</button>
+        <div class="hero__lore">
+            <p class="lore">“Quando o Sino rachou, Péria perdeu cor. Agora, cada guerreiro carrega sua própria luz para atravessar a penumbra.”</p>
+            <p class="meta">Capítulo zero — O Despertar na Orla de Âmbar</p>
         </div>
     </header>
 
-    <main class="layout" id="app" aria-live="polite">
-        <section class="card story-card" aria-labelledby="story-title">
-            <div class="card-header">
-                <h2 id="story-title">História central</h2>
-                <button type="button" class="secondary" id="analyzeStory">Analisar texto</button>
+    <main class="page">
+        <section id="creator" class="panel">
+            <div>
+                <p class="eyebrow">Etapa 1</p>
+                <h2>Forje seu avatar</h2>
+                <p>O código gera sprites vetoriais simples, mas você define o significado. Combine função e emoção para entrar no campo.</p>
             </div>
-            <textarea id="storyOverview" placeholder="Descreva a essência do mundo de Péria, seus conflitos centrais e o que move os personagens."></textarea>
-            <div id="storySuggestions" class="suggestions" aria-live="polite"></div>
-        </section>
-
-        <section class="card" aria-labelledby="idea-title">
-            <div class="card-header">
-                <h2 id="idea-title">Quadro de ideias</h2>
-                <p>Capture conceitos soltos, diálogos inspiradores e cenas potenciais.</p>
-            </div>
-            <form id="ideaForm" class="stacked-form" autocomplete="off">
-                <input type="hidden" name="edit-index" id="ideaEditIndex">
-                <div class="form-grid">
-                    <label class="field">
-                        <span>Título da ideia</span>
-                        <input id="ideaTitle" name="ideaTitle" type="text" placeholder="Ex.: A invasão de Ar-Lum" required>
-                    </label>
-                    <label class="field">
-                        <span>Categoria</span>
-                        <input id="ideaCategory" name="ideaCategory" type="text" placeholder="Conflito, personagem, mistério...">
-                    </label>
-                </div>
+            <form id="creatorForm" class="form-grid" autocomplete="off">
                 <label class="field">
-                    <span>Descrição</span>
-                    <textarea id="ideaDescription" name="ideaDescription" rows="3" placeholder="Escreva aqui a centelha criativa." required></textarea>
-                </label>
-                <button type="submit" class="primary" id="ideaSubmit">Adicionar ideia</button>
-            </form>
-            <ul id="ideaList" class="item-list" aria-live="polite"></ul>
-        </section>
-
-        <section class="card" aria-labelledby="chapter-title">
-            <div class="card-header">
-                <h2 id="chapter-title">Cenas e capítulos</h2>
-                <p>Monitore o andamento da narrativa e as peças-chave da trama.</p>
-            </div>
-            <form id="chapterForm" class="stacked-form" autocomplete="off">
-                <input type="hidden" id="chapterEditIndex">
-                <label class="field">
-                    <span>Título</span>
-                    <input id="chapterTitle" type="text" placeholder="Capítulo 3 - O Despertar" required>
+                    <span>Nome</span>
+                    <input id="heroName" type="text" placeholder="Ex.: Aria do Brilho" required>
                 </label>
                 <label class="field">
-                    <span>Resumo rápido</span>
-                    <textarea id="chapterSummary" rows="3" placeholder="Descreva o que acontece, os pontos de virada e a emoção dominante." required></textarea>
-                </label>
-                <label class="field">
-                    <span>Estado</span>
-                    <select id="chapterStatus">
-                        <option value="ideia">Ideia</option>
-                        <option value="esboço">Esboço</option>
-                        <option value="em andamento">Em andamento</option>
-                        <option value="revisado">Revisado</option>
+                    <span>Chamado</span>
+                    <select id="heroCalling">
+                        <option value="Lâmina Resonante">Lâmina Resonante</option>
+                        <option value="Arpista das Marés">Arpista das Marés</option>
+                        <option value="Guardião Lucente">Guardião Lucente</option>
                     </select>
                 </label>
-                <button type="submit" class="primary" id="chapterSubmit">Salvar cena</button>
-            </form>
-            <div id="chapterList" class="item-grid" aria-live="polite"></div>
-        </section>
-
-        <section class="card" aria-labelledby="gallery-title">
-            <div class="card-header">
-                <h2 id="gallery-title">Galeria visual</h2>
-                <p>Referências, mapas e símbolos que mantêm o universo de Péria vivo.</p>
-            </div>
-            <form id="imageForm" class="stacked-form" autocomplete="off">
-                <input type="hidden" id="imageEditIndex">
                 <label class="field">
-                    <span>URL da imagem</span>
-                    <input id="imageUrl" type="url" placeholder="https://" required>
+                    <span>Cor principal</span>
+                    <input id="heroColor" type="color" value="#46d3ff">
                 </label>
-                <div class="form-grid">
-                    <label class="field">
-                        <span>Título</span>
-                        <input id="imageTitle" type="text" placeholder="Mapa de Péria" required>
-                    </label>
-                    <label class="field">
-                        <span>Notas</span>
-                        <input id="imageNotes" type="text" placeholder="Fonte, inspiração ou detalhes importantes">
-                    </label>
-                </div>
-                <button type="submit" class="primary" id="imageSubmit">Adicionar à galeria</button>
+                <label class="field">
+                    <span>Simbolo de fundo</span>
+                    <select id="heroSigil">
+                        <option value="orb">Orbe focal</option>
+                        <option value="crescent">Meia-lua</option>
+                        <option value="diamond">Vértice</option>
+                    </select>
+                </label>
+                <button class="primary" type="submit">Entrar em Péria</button>
             </form>
-            <div id="imageList" class="image-grid" aria-live="polite"></div>
+            <div class="creator__preview">
+                <canvas id="portrait" width="240" height="240" aria-label="Retrato ilustrado do personagem"></canvas>
+                <p class="meta">O retrato é gerado com formas procedurais — pense como se fosse o primeiro sprite do jogo.</p>
+            </div>
         </section>
 
-        <section class="card" aria-labelledby="scratch-title">
-            <div class="card-header">
-                <h2 id="scratch-title">Bloco de notas</h2>
-                <p>Use para pensamentos rápidos, ganchos de pesquisa ou lembretes.</p>
+        <section class="panel" id="game">
+            <div class="panel__header">
+                <div>
+                    <p class="eyebrow">Etapa 2</p>
+                    <h2>Campo de provas</h2>
+                    <p>Use A/D ou ←/→ para mover, Espaço para pular, Shift para dash e J para atacar. Vença um Eco Sombrio para conquistar sua primeira memória.</p>
+                </div>
+                <div class="hud">
+                    <div class="hud__item"><span>Nome:</span> <strong id="hudName">—</strong></div>
+                    <div class="hud__item"><span>Chamado:</span> <strong id="hudCalling">—</strong></div>
+                    <div class="hud__item"><span>Memórias:</span> <strong id="hudScore">0</strong></div>
+                </div>
             </div>
-            <textarea id="scratchpad" rows="8" placeholder="Deixe as ideias fluírem..."></textarea>
+            <div class="game-shell">
+                <canvas id="gameCanvas" width="960" height="520" role="img" aria-label="Campo de testes 2D"></canvas>
+                <div class="overlay" id="startOverlay">
+                    <h3>Toque para iniciar</h3>
+                    <p>O eco do Sino chama você. Pressione qualquer tecla depois de criar seu personagem.</p>
+                </div>
+            </div>
+            <div class="legend">
+                <div>
+                    <h3>Objetivo</h3>
+                    <p>Alcance o alto do penhasco, corte o Eco Sombrio e mantenha-se em movimento. A física é leve e responsiva para que você sinta o ritmo.</p>
+                </div>
+                <div>
+                    <h3>História em andamento</h3>
+                    <ul id="storyLog" class="story-log" aria-live="polite"></ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel timeline">
+            <div>
+                <p class="eyebrow">Etapa 3</p>
+                <h2>Trama em capítulos</h2>
+                <p>Enquanto o protótipo se concentra no controle, a linha abaixo sugere a campanha completa.</p>
+            </div>
+            <ol class="beats">
+                <li><strong>O Sino Rachado:</strong> Péria perde cor, mas um pulso resta no Farol Azul.</li>
+                <li><strong>A Oficina de Ecos:</strong> Você aprende a converter memórias em armas dançantes.</li>
+                <li><strong>Cidade Suspensa:</strong> Plataformas telescópicas revelam segredos dos Antigos.</li>
+                <li><strong>Gruta das Vozes:</strong> Aliados espectrais contam verdades conflitantes.</li>
+                <li><strong>Convergência:</strong> Escolha entre selar o Vazio ou libertá-lo para reinventar o mundo.</li>
+            </ol>
         </section>
     </main>
 
-    <footer class="app-footer">
-        <small>Os dados ficam salvos apenas neste navegador por meio do armazenamento local.</small>
+    <footer class="footer">
+        <small>Protótipo criado para demonstrar narrativa, criação de personagem e loop de movimento ágil.</small>
     </footer>
 
     <script src="./js/app.js" defer></script>
